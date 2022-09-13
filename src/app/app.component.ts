@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { FileService } from './services/file.service';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   constructor(
-    private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private fileService: FileService
   ) {}
 
   createUser() {
@@ -23,5 +23,14 @@ export class AppComponent {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+  downloadPDF() {
+    this.fileService
+      .get(
+        'my.pdf',
+        'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf',
+        'application/pdf'
+      )
+      .subscribe();
   }
 }
