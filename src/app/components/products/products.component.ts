@@ -48,7 +48,7 @@ export class ProductsComponent implements OnInit {
   }
 
   onShowDetail(id: string) {
-    this.productService.getProduct('dfsgh').subscribe(
+    this.productService.getProduct(id).subscribe(
       (data) => {
         this.toggleProductDetail();
         this.productChosen = data;

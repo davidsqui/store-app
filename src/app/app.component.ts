@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Product } from './models/product.model';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +8,20 @@ import { Product } from './models/product.model';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  register = {
-    name: '',
-    email: '',
-    password: '',
-  };
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
-
-  onRegister() {
-    console.log(this.register);
+  createUser() {
+    this.userService
+      .create({
+        name: 'David',
+        email: 'david@gmail.com',
+        password: '123',
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }

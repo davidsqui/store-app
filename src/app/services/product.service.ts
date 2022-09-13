@@ -1,11 +1,12 @@
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpStatusCode,
+  HttpStatusCode
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { checkTime } from '../interceptors/time.interceptor';
 import { environment } from './../../environments/environment';
 import { NewProduct, Product, UpdateProduct } from './../models/product.model';
 
@@ -19,16 +20,18 @@ export class ProductService {
 
   getProducts(limit: number, offset: number) {
     const params = { limit, offset };
-    return this.http.get<Product[]>(this.url, { params }).pipe(
-      map((products) =>
-        products.map((product) => {
-          return {
-            ...product,
-            taxes: 0.18 * product.price,
-          };
-        })
-      )
-    );
+    return this.http
+      .get<Product[]>(this.url, { params, context: checkTime() })
+      .pipe(
+        map((products) =>
+          products.map((product) => {
+            return {
+              ...product,
+              taxes: 0.18 * product.price,
+            };
+          })
+        )
+      );
   }
 
   getProduct(id: string) {
