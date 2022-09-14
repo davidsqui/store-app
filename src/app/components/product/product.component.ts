@@ -19,8 +19,6 @@ export class ProductComponent implements OnInit {
     },
   };
   @Output() addedProduct = new EventEmitter<Product>();
-  @Output() showProduct = new EventEmitter<string>();
-
   constructor() {}
 
   ngOnInit(): void {}
@@ -29,7 +27,4 @@ export class ProductComponent implements OnInit {
     this.addedProduct.emit(this.product);
   }
 
-  onShowDetail() {
-    this.showProduct.emit(this.product.id);
-  }
 }

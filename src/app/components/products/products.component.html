@@ -5,7 +5,6 @@
     [product]="product"
     *ngFor="let product of products"
     (addedProduct)="onAddToShoppingCart($event)"
-    (showProduct)="onShowDetail($event)"
   ></app-product>
   <button (click)="onLoadMore()">Load More</button>
 </div>

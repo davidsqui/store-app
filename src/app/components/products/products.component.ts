@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   NewProduct,
   Product,
-  UpdateProduct
+  UpdateProduct,
 } from './../../models/product.model';
 import { ProductService } from './../../services/product.service';
 import { StoreService } from './../../services/store.service';
@@ -16,6 +16,12 @@ export class ProductsComponent implements OnInit {
   myShoppingCart: Product[];
   total = 0;
   @Input() products: Product[] = [];
+  @Input() set productId(id: string | null) {
+    this.showProductDetail = false;
+    if (id) {
+      this.onShowDetail(id);
+    }
+  }
   @Output() loadMore = new EventEmitter();
   showProductDetail = false;
   productChosen: Product = {
@@ -38,7 +44,6 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loadMore();
   }
 
   onAddToShoppingCart(product: Product) {

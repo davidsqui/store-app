@@ -12,6 +12,7 @@ import { ProductService } from './../../services/product.service';
 export class CategoryComponent implements OnInit {
   categoryId: string | null = null;
   products: Product[] = [];
+  productId: string | null = null;
   limit = 10;
   offset = 0;
 
@@ -39,6 +40,10 @@ export class CategoryComponent implements OnInit {
         this.products = this.products.concat(data);
         this.offset += this.limit;
       });
+
+    this.route.queryParamMap.subscribe((params) => {
+      this.productId = params.get('product');
+    });
   }
 
   onLoadMore() {
