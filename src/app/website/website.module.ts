@@ -5,7 +5,6 @@ import { SharedModule } from './../shared/shared.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HighlightDirective } from './directives/highlight.directive';
-import { CategoryComponent } from './pages/category/category.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MyCartComponent } from './pages/my-cart/my-cart.component';
@@ -20,7 +19,6 @@ import { WebsiteRoutingModule } from './website-routing.module';
     NavComponent,
     HighlightDirective,
     HomeComponent,
-    CategoryComponent,
     MyCartComponent,
     LoginComponent,
     RegisterComponent,
