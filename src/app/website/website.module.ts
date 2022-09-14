@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { QuicklinkModule } from 'ngx-quicklink';
 import { SwiperModule } from 'swiper/angular';
 import { SharedModule } from './../shared/shared.module';
 import { LayoutComponent } from './components/layout/layout.component';
@@ -27,6 +28,12 @@ import { WebsiteRoutingModule } from './website-routing.module';
     ProductDetailComponent,
     LayoutComponent,
   ],
-  imports: [CommonModule, SharedModule, SwiperModule, WebsiteRoutingModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    SwiperModule,
+    WebsiteRoutingModule,
+    QuicklinkModule,
+  ],
 })
 export class WebsiteModule {}
