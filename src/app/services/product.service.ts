@@ -1,7 +1,7 @@
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpStatusCode
+  HttpStatusCode,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
@@ -58,5 +58,13 @@ export class ProductService {
 
   deleteProduct(id: string) {
     return this.http.delete<boolean>(`${this.url}/${id}`);
+  }
+
+  getByCategory(categoryId: string, limit: number, offset: number) {
+    const params = { limit, offset };
+    return this.http.get<Product[]>(
+      `${environment.API}/api/categories/${categoryId}/products`,
+      { params }
+    );
   }
 }
