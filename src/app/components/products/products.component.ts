@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   NewProduct,
   Product,
@@ -15,7 +15,7 @@ import { StoreService } from './../../services/store.service';
 export class ProductsComponent implements OnInit {
   myShoppingCart: Product[];
   total = 0;
-  products: Product[] = [];
+  @Input() products: Product[] = [];
   showProductDetail = false;
   productChosen: Product = {
     id: '',
@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadMore();
+    // this.loadMore();
   }
 
   onAddToShoppingCart(product: Product) {

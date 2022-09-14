@@ -8,6 +8,7 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  image = '';
   constructor(
     private userService: UserService,
     private fileService: FileService
@@ -32,5 +33,14 @@ export class AppComponent {
         'application/pdf'
       )
       .subscribe();
+  }
+  onUpload(event: Event) {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+    if (file) {
+      this.fileService.upload(file).subscribe((data) => {
+        this.image = data.location;
+      });
+    }
   }
 }
