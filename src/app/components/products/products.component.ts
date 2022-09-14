@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   NewProduct,
   Product,
@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit {
   myShoppingCart: Product[];
   total = 0;
   @Input() products: Product[] = [];
+  @Output() loadMore = new EventEmitter();
   showProductDetail = false;
   productChosen: Product = {
     id: '',
@@ -28,8 +29,6 @@ export class ProductsComponent implements OnInit {
       name: '',
     },
   };
-  limit = 10;
-  offset = 0;
 
   constructor(
     private productService: ProductService,
@@ -101,12 +100,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  loadMore() {
-    this.productService
-      .getProducts(this.limit, this.offset)
-      .subscribe((data) => {
-        this.products = this.products.concat(data);
-        this.offset += this.limit;
-      });
+  onLoadMore() {
+    this.loadMore.emit();
   }
 }

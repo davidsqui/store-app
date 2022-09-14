@@ -15,6 +15,10 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
+    this.onLoadMore();
+  }
+
+  onLoadMore() {
     this.productService
       .getProducts(this.limit, this.offset)
       .subscribe((data) => {
