@@ -3,9 +3,9 @@ import {
   NewProduct,
   Product,
   UpdateProduct,
-} from './../../models/product.model';
-import { ProductService } from './../../services/product.service';
-import { StoreService } from './../../services/store.service';
+} from './../../../models/product.model';
+import { ProductService } from './../../../services/product.service';
+import { StoreService } from './../../../services/store.service';
 
 @Component({
   selector: 'app-products',
