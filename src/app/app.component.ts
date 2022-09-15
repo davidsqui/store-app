@@ -17,8 +17,8 @@ export class AppComponent {
   createUser() {
     this.userService
       .create({
-        name: 'David',
-        email: 'david@gmail.com',
+        name: 'Katy',
+        email: 'katy@gmail.com',
         password: '123',
       })
       .subscribe((data) => {

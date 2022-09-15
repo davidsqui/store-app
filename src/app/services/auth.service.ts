@@ -20,7 +20,11 @@ export class AuthService {
       .pipe(tap((data) => this.tokenService.save(data.access_token)));
   }
 
-  profile() {
+  getProfile() {
     return this.http.get<User>(`${this.url}/profile`);
+  }
+
+  logout() {
+    this.tokenService.remove();
   }
 }
