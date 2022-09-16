@@ -1,3 +1,4 @@
+import { ExitGuard } from './../guards/exit.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './../guards/auth.guard';
@@ -25,11 +26,15 @@ const routes: Routes = [
       },
       { path: 'products/:id', component: ProductDetailComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
+      {
+        path: 'register',
+        canDeactivate: [ExitGuard],
+        component: RegisterComponent,
+      },
       {
         path: 'profile',
-        component: ProfileComponent,
         canActivate: [AuthGuard],
+        component: ProfileComponent,
       },
     ],
   },
