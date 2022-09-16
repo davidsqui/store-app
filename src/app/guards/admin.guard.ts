@@ -7,19 +7,13 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { AuthService } from './../services/auth.service';
-import { TokenService } from './../services/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private tokenService: TokenService
-  ) {}
+export class AdminGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -29,21 +23,30 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const token = this.tokenService.get();
-    if (!token) {
-      this.router.navigate(['/home']);
+    let user = localStorage.getItem('user');
+    console.log(user);
+    if (user) {
+      let user1 = JSON.parse(user);
+      console.log(user1);
+      if (user1) {
+        return true;
+      } else {
+        this.router.navigate(['/home']);
+        return false;
+      }
+    } else {
       return false;
     }
-    return true;
 
     // return this.authService.user$.pipe(
     //   map((user) => {
     //     console.log(user);
-    //     if (!user) {
+    //     if (user?.role === 'admin') {
+    //       return true;
+    //     } else {
     //       this.router.navigate(['/home']);
     //       return false;
     //     }
-    //     return true;
     //   })
     // );
   }

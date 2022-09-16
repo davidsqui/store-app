@@ -42,9 +42,12 @@ export class NavComponent implements OnInit {
 
   login() {
     this.authService
-      .login('katy@gmail.com', '123')
+      .login('admin@mail.com', 'admin123')
       .pipe(switchMap(() => this.authService.getProfile()))
-      .subscribe(() => this.router.navigate(['/profile']));
+      .subscribe((user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['/profile']);
+      });
   }
 
   getCategories() {

@@ -12,7 +12,7 @@ import { TokenService } from './token.service';
 export class AuthService {
   private url = `${environment.API}/api/auth`;
 
-  private user = new BehaviorSubject<User | null>(null);
+  user = new BehaviorSubject<User | null>(null);
   user$ = this.user.asObservable();
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
